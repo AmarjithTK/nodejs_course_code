@@ -21,8 +21,9 @@ app.use('/add-product',(req,res,next)=>{
 })
 
 
+// limiting middleware execution to only post requests
 
-app.use('/product',(req,res,next)=>{
+app.post('/product',(req,res,next)=>{
     res.send('<h1>product page of express</h1>')
     console.log(req.body)
     // next() next func should not be called at this moment, Why ?
