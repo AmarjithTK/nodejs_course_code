@@ -8,6 +8,7 @@
     "start": "node app.js",
     "start-server": "nodemon app.js"
   },
+  
   "author": "AmarjithTK",
   "license": "ISC",
   "devDependencies": {
