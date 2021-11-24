@@ -12,10 +12,15 @@ app.use((req,res,next)=>{
 
 app.use((req,res,next)=>{
     console.log('this is function 2')
+    res.send('<h1> This is express framework </h1>')
 })
 
 
-const server = http.createServer(app)
+// const server = http.createServer(app)
+// server.listen(4500)  two lines are replaced ->  by
 
 
-server.listen(4500)
+app.listen(4500)
+
+
+
