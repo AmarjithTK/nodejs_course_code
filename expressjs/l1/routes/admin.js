@@ -2,17 +2,23 @@ const express = require('express')
 
 const router  = express.Router()
 
+
+/// this is /admin/add-product GET request
+
 router.get('/add-product',(req,res,next)=>{
-    res.send('<h2>add product page of expressjs</h2><form action="/product" method="POST"><input type="text" name="product" id=""><button type="submit">submit</button></form>')
-    // next()
-    res.redirect('/')
+  res.sendFile(require.main.path+'/methodview/'+'admin.html')
+  // next()
 
 })
 
-router.post('/product',(req,res,next)=>{
-    res.send('<h1>product page of express</h1>')
+///  this is /admin/add-product POST request
+
+router.post('/add-product',(req,res,next)=>{
+    res.sendFile(path.join(require.main.path,'methodview','shop.html'))
     console.log(req.body)
     // next() next func should not be called at this moment, Why ?
+  // res.redirect('/')
+
 })
 
 // module.exports = router
