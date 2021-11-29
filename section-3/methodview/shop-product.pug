@@ -1,0 +1,17 @@
+extends layout/main.pug
+
+
+block bodyContent
+	if prods.length> 0
+		.container 
+			div(class="columns is-flex is-flex-wrap-wrap") 
+				each product in prods
+					.column.is-4 
+						.card
+							.card-image
+								figure.image.is-4by3
+									img(src='https://cdn.pixabay.com/photo/2021/08/25/20/42/field-6574455__480.jpg')
+
+							.card-content 
+								h2.is-size-4 #{product.title}		
+	

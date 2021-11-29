@@ -1,0 +1,15 @@
+extends layout/main.pug
+
+
+block headContent
+
+
+
+block bodyContent 
+
+    form.form(action='/admin/add-product' method='POST' style='max-width: 500px;margin: 0 auto;')
+      h1.is-size-3.mt-4(style='text-align: center;') This is the admin page of shop
+      p.is-size-4.mb-4.mt-4.has-text-centered Here you can add more of products
+      input.input(type='text' name='name' id='')
+      .container.c-h
+        button.button.is-dark.m-5(type='submit') submit
