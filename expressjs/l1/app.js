@@ -1,10 +1,20 @@
 const bodyParser = require('body-parser')
 const express = require('express')
 
+
 const app = express()
 
 const adminRoutes = require('./routes/admin')
 const shopRoutes = require('./routes/shops')
+
+
+
+
+// pug view engine and views
+
+
+app.set('view engine','pug')
+app.set('views',require.main.path+'/methodview')
 
 
 
@@ -21,7 +31,7 @@ app.use(bodyParser.urlencoded({extended:false}))
 
 // limiting middleware execution to only post requests
 
-app.use('/admin',adminRoutes)
+app.use('/admin',adminRoutes.router)
 
 
 // app.use('/') will run always a url starts with / 
