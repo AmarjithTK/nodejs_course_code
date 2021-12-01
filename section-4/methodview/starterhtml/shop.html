@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+</head>
+
+<body>
+
+
+    <style>
+        .c-h {
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+
+
+    <div class="box">
+        <nav class="navbar">
+            <div class="navbar-brand">
+
+                <a class="navbar-item" href="https://bulma.io">
+                    <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
+                </a>
+            </div>
+            <div id="navbarBasicExample" class="navbar-menu">
+                <div class="navbar-start">
+                    <a href="/" class="navbar-item">shop</a>
+                    <a href="/admin/add-product" class="navbar-item">add products</a>
+
+
+
+                </div>
+            </div>
+        </nav>
+    </div>
+
+
+
+    <div class="container">
+        <form action="/admin/add-product" class="form" method="POST">
+        
+        
+            <h1 class="is-size-3 mt-4" style="text-align: center;">
+                This is the admin page of shop
+                
+            </h1>
+            <p class="is-size-4 mb-4 mt-4 has-text-centered">Here add more products</p>
+            <input type="text" name="name" class="input">
+            <div class="container c-h"><button class="button is-dark m-5" type="submit">submit</button></div>
+        
+        
+        </form>
+    </div>
+
+</body>
+
+</html>
