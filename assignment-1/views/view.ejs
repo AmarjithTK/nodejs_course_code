@@ -1,0 +1,21 @@
+<%- include('includes/till_nav.ejs') %>
+
+
+    <% if(data.length > 0)  { %>
+
+        <ul>
+            <% for(let dataelem of data) {%>
+            <li><%= dataelem.title %></li>
+            <% } %>
+        </ul>
+        
+
+    
+    <% } else {%>
+
+        <h1>no data found</h1>
+        <% } %>
+    
+    
+</body>
+</html>
