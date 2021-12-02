@@ -1,0 +1,29 @@
+{{!-- <%- include('includes/till_nav.ejs') %> --}}
+
+
+
+
+    {{!-- <% if(data.length > 0)  { %> --}}
+
+    {{#if datalength}}
+
+        <ul>
+            {{!-- <% for(let dataelem of data) {%> --}}
+            {{#each data}}
+            <li>{{this.title}}</li>
+            {{!-- <% } %> --}}
+            {{/each}}
+        </ul>
+
+
+      
+
+    
+    {{!-- <% } else {%> --}}
+    {{else}}
+        <h1>no data found</h1>
+        {{!-- <% } %> --}}
+    
+    {{/if}}  
+</body>
+</html>

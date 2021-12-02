@@ -18,14 +18,20 @@ const view = require('./routes/view')
 const err = require('./routes/404')
 
 
-
+const handlebar =  require('express-handlebars')
 
 
 
 const app = express()
 
 
-app.set('view engine','ejs')
+app.engine('hbs',handlebar.engine({
+    defaultLayout:'includes/till_nav',
+    extname:'hbs',
+    layoutsDir:'views'
+}))
+
+app.set('view engine','hbs')
 app.set('views','views')
 
 

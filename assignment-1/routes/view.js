@@ -10,7 +10,7 @@ const data = require('../routes/add')
 
 router.get('/',(req,res)=>{
 
-    res.render('view',{pageTitle:'users page',data:data.requestData})
+    res.render('view',{pageTitle:'users page',data:data.requestData,datalength:data.requestData.length > 0 })
 
 })
 
