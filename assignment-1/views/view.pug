@@ -1,0 +1,8 @@
+extends includes/till_nav.pug
+
+
+block bodyContent
+    if datalength 
+        ul 
+            each prod in data 
+                li #{prod.title}

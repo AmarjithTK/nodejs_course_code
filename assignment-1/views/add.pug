@@ -1,0 +1,11 @@
+extends includes/till_nav.pug
+
+
+block bodyContent 
+
+ form(action="/add", method="post")
+  input(type="text", name="username") 
+  br
+  button(type="submit") submit
+  
+

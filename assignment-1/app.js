@@ -25,13 +25,9 @@ const handlebar =  require('express-handlebars')
 const app = express()
 
 
-app.engine('hbs',handlebar.engine({
-    defaultLayout:'includes/till_nav',
-    extname:'hbs',
-    layoutsDir:'views'
-}))
 
-app.set('view engine','hbs')
+
+app.set('view engine','pug')
 app.set('views','views')
 
 
