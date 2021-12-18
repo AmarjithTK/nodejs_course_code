@@ -1,0 +1,23 @@
+<div class="box">
+    <nav class="navbar">
+        <div class="navbar-brand">
+
+            <a class="navbar-item" href="https://bulma.io">
+                <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
+            </a>
+        </div>
+        <div id="navbarBasicExample" class="navbar-menu">
+            <div class="navbar-start">
+                <a href="/" class="button mr-2 <%= path == 'productshop' ? 'is-active' : '' %> navbar-item">Shop</a>
+                <a href="/products" class="button mr-2 <%= path == 'products' ? 'is-active' : '' %> navbar-item">Products</a>
+                <a href="/cart" class="button mr-2  <%= path == 'productcart' ? 'is-active' : '' %> navbar-item">Cart</a>
+                <a href="/admin/add-product" class="button mr-2 <%= path == 'productadd' ? 'is-active' : '' %> navbar-item">Add Products</a>
+                <a href="/admin/products" class="button mr-2 <%= path == 'productadmin' ? 'is-active' : '' %> navbar-item">Admin Products</a>
+
+                
+
+
+            </div>
+        </div>
+    </nav>
+</div>
