@@ -1,4 +1,3 @@
-
 <%- include('../mixins/head.ejs') %>
 
 
@@ -10,18 +9,33 @@
 
 
     <div class="container">
-        <form action="/admin/add-product" class="form" method="POST">
-        
-        
-            <h1 class="is-size-3 mt-4" style="text-align: center;">
-                This is the admin page of shop
-                
-            </h1>
-            <p class="is-size-4 mb-4 mt-4 has-text-centered">Here add more products</p>
-            <input type="text" name="name" class="input">
-            <div class="container c-h"><button class="button is-dark m-5" type="submit">submit</button></div>
-        
-        
-        </form>
+
+
+        <div class="columns is-flex is-justify-content-center">
+            <div class="column is-4">
+                <form action="/admin/add-product" class="form has-text-centered" method="POST">
+
+
+                    <h1 class="is-size-4 has-text-weight-bold mt-4 mb-2" style="text-align: center;">
+                        This is the admin page of shop
+
+                    </h1>
+
+                    <p class="is-size-6 mb-4 mt-4 has-text-centered">Here add more products</p>
+                    <input type="text" name="title" placeholder="Title of product" class="input mt-2">
+                    <input type="text" name="price" placeholder="Price of product" class="input mt-2">
+                    <input type="text" name="imageurl" placeholder="Image url of product" class="input mt-2">
+
+                    <input type="text" name="description" placeholder="Description of product" class="input mt-2">
+
+                    <button class="button is-dark m-5 is-inline-block" type="submit">submit</button>
+
+
+                </form>
+
+            </div>
+        </div>
+
+
     </div>
     <%- include('../mixins/footer.ejs') %>

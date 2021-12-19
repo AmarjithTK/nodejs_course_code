@@ -8,13 +8,14 @@
         </div>
         <div id="navbarBasicExample" class="navbar-menu">
             <div class="navbar-start">
-                <a href="/" class="button mr-2 <%= path == 'productshop' ? 'is-active' : '' %> navbar-item">Shop</a>
-                <a href="/products" class="button mr-2 <%= path == 'products' ? 'is-active' : '' %> navbar-item">Products</a>
+                <a href="/" class="button mr-2 <%= path == '/' ? 'is-active' : '' %> navbar-item">Shop</a>
+                <a href="/products" class="button mr-2 <%= path == 'productshop' ? 'is-active' : '' %> navbar-item">Products</a>
                 <a href="/cart" class="button mr-2  <%= path == 'productcart' ? 'is-active' : '' %> navbar-item">Cart</a>
+                <a href="/orders" class="button mr-2  <%= path == 'productorder' ? 'is-active' : '' %> navbar-item">Orders</a>
                 <a href="/admin/add-product" class="button mr-2 <%= path == 'productadd' ? 'is-active' : '' %> navbar-item">Add Products</a>
-                <a href="/admin/products" class="button mr-2 <%= path == 'productadmin' ? 'is-active' : '' %> navbar-item">Admin Products</a>
+                <a href="/admin/products" class="button mr-2 <%= path == 'listproducts' ? 'is-active' : '' %> navbar-item">Admin Products</a>
 
-                
+
 
 
             </div>

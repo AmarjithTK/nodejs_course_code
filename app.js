@@ -21,7 +21,9 @@ app.use('/admin',adminRoutes)
 app.use(shopRoutes)
 app.use('/',errorController.errorPage)
 
+app.use(express.static('public'))
+
 app.listen(4500)
 
-console.log(require.main.filename,require.main.path)
+// console.log(require.main.filename,require.main.path)
 
