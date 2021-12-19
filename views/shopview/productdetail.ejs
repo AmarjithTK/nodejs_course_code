@@ -1,0 +1,57 @@
+<%- include('../mixins/head.ejs') %>
+
+<body>
+
+
+    <%- include('../mixins/nav.ejs') %>
+
+
+    <div class="container">
+        <div class="columns is-flex is-justify-content-center">
+
+            <%if(product!= null ){%>
+
+            <div class="column is-12">
+                <div class="card">
+                    <div class="card-header">
+                        <a href="/products" class="title m-4">&leftarrow;</a>
+                        <p class="card-header-title is-centered"><%= product.title %></p>
+                    </div>
+                    <div class="card-image mb-0">
+                        <figure class="image">
+                            <img src="https://media.istockphoto.com/photos/farms-the-source-of-all-food-picture-id1303739157?b=1&k=20&m=1303739157&s=170667a&w=0&h=-Sy_PQcmcaDgvH1H5jEZi4Zoopuxem8dTBtXzvJW_xg=" alt="" srcset="">
+                        </figure>
+                    </div>
+
+                    <div class="card-content p-2 has-text-centered">
+
+                        <p class=" is-6 has-text-centered has-text-weight-bold">
+                            <%= product.price %> $
+                        </p>
+
+                        <p class=" is-6 has-text-centered"><%= product.description %></p>
+
+
+                        <a href="http://" class="button is-primary is-active m-1 is-inline-block ">Add to cart</a>
+
+                    </div>
+
+
+                </div>
+            </div>
+
+            <%} else {%>
+
+
+            <h1>nothing here</h1>
+            <%} %>
+
+
+
+
+
+        </div>
+
+    </div>
+
+    <%- include('../mixins/footer.ejs') %>

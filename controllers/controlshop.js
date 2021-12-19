@@ -3,18 +3,32 @@ const products = require('../models/modelproduct')
 
 exports.getProducts = (req, res, next) => {
 
-    const productData = products.fetchAll((productdata) => {
+    // const productData = products.fetchAll((productdata) => {
 
-        res.render('shopview/productlist', {
-            pageTitle: 'Shop page',
-            path: 'productshop',
-            prods: productdata,
-            hasprods: productdata.length > 0,
-            activeShop: true
+
+
+    // })
+
+    products.fetchAll()
+        .then(data => {
+
+
+            return res.render('shopview/productlist', {
+                pageTitle: 'Shop page',
+                path: 'productshop',
+                prods: data,
+                hasprods: data.length > 0,
+                activeShop: true
+
+            })
 
         })
+        .catch(err => {
+            console.log(err)
+        })
 
-    })
+
+
 
 
 }
@@ -23,18 +37,30 @@ exports.getProducts = (req, res, next) => {
 
 exports.getIndex = (req, res) => {
 
-    const productData = products.fetchAll((productdata) => {
+    // const productData = products.fetchAll((productdata) => {
 
-        res.render('shopview/productindex', {
-            pageTitle: 'Index page',
-            path: '/',
-            prods: productdata,
-            hasprods: productdata.length > 0,
-            activeShop: true
+
+    // })
+
+    products.fetchAll()
+        .then(data => {
+
+
+            return res.render('shopview/productindex', {
+                pageTitle: 'Index page',
+                path: '/',
+                prods: data,
+                hasprods: data.length > 0,
+                activeShop: true
+
+            })
 
         })
+        .catch(err => {
+            console.log(err)
+        })
 
-    })
+
 
 
 }
@@ -45,7 +71,28 @@ exports.getDetails = (req, res) => {
 
     console.log(params);
 
-    res.redirect('/')
+    products.findProductById(params).then(productdata => {
+        console.log(productdata);
+        // return res.render('shopview/productindex', {
+        //     pageTitle: 'Index page',
+        //     path: '/',
+        //     prods: data,
+        //     hasprods: data.length > 0,
+        //     activeShop: true
+
+        // })
+
+        return res.render('shopview/productdetail', {
+            pageTitle: 'Product details',
+            path: 'productshop',
+            product: productdata,
+
+
+        })
+
+    })
+
+
 
 }
 

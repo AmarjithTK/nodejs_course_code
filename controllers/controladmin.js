@@ -30,17 +30,39 @@ exports.getProductList = (req, res) => {
     // })
 
 
+    products.fetchAll()
+        .then(data => {
 
-    const productData = products.fetchAll((productdata) => {
 
-        return res.render('adminview/listproducts', {
-            pageTitle: 'list products',
-            path: 'listproducts',
-            prods: productdata,
-            hasprods: productdata.length > 0,
-            activeShop: true
+            return res.render('adminview/listproducts', {
+                pageTitle: 'list products',
+                path: 'listproducts',
+                prods: data,
+                hasprods: data.length > 0,
+                activeShop: true
+
+            })
 
         })
+        .catch(err => {
+            console.log(err)
+        })
 
-    })
+
+
+    // products.fetchAll((productdata) => {
+
+    //     return res.render('adminview/listproducts', {
+    //         pageTitle: 'list products',
+    //         path: 'listproducts',
+    //         prods: productdata,
+    //         hasprods: productdata.length > 0,
+    //         activeShop: true
+
+    //     })
+
+
+
+    // })
+
 }

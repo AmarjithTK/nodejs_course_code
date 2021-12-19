@@ -8,7 +8,7 @@ const uuid = require('uuid')
 
 const p = path.join(require.main.path, 'files', 'data.json')
 
-const getFileData = cb => {
+const getFileData = () => {
 
     return new Promise((resolve, reject) => {
 
@@ -22,7 +22,7 @@ const getFileData = cb => {
             }
 
 
-            resolve(products)
+            return resolve(products)
 
 
         })
@@ -81,10 +81,26 @@ module.exports = class Product {
 
 
     // I feel  like static is similar keyword to --> @classmethod in python
-    static fetchAll(cb) {
+    static fetchAll() {
 
-        getFileData(cb);
+        return getFileData();
 
+    }
+
+    static findProductById(id) {
+        return new Promise((resolve, reject) => {
+
+
+            getFileData().then(productdata => {
+                productdata.forEach(element => {
+                    if (element.uuid === id) {
+                        return resolve(element)
+                    }
+                });
+            }).catch(err => reject(err))
+
+
+        })
     }
 
 
