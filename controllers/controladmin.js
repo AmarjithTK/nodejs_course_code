@@ -1,8 +1,8 @@
-const products = require('../models/modelproduct')
+const ProductClass = require('../models/modelproduct')
 
 
 exports.getAddProduct = (req, res) => {
-    // console.log(req.body)
+    console.log(req.body)
     res.render('adminview/addproducts', {
         pageTitle: 'Add product page',
         path: 'productadd',
@@ -14,7 +14,8 @@ exports.getAddProduct = (req, res) => {
 
 exports.postAddProduct = (req, res) => {
 
-    const product = new products(req.body)
+    const product = new ProductClass(req.body)
+    console.log(req.body)
     product.save()
 
     res.redirect('/')
@@ -30,7 +31,7 @@ exports.getProductList = (req, res) => {
     // })
 
 
-    products.fetchAll()
+    ProductClass.fetchAll()
         .then(data => {
 
 

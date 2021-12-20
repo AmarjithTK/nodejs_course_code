@@ -46,7 +46,7 @@ const getFileData = () => {
 }
 
 
-module.exports = class Product {
+module.exports = class ProductClass {
 
 
     constructor({
@@ -64,17 +64,29 @@ module.exports = class Product {
 
 
 
+
     save() {
 
         this.uuid = uuid.v1()
 
-        getFileData((products) => {
+
+        console.log(this, 'this is this');
+
+        // getFileData((products) => {
+
+        // })
+
+        getFileData.then(products => {
+
             products.push(this)
 
+            console.log(this);
             fs.writeFile(p, JSON.stringify(products), (err) => {
                 console.log(err)
             })
+
         })
+
 
 
     }
