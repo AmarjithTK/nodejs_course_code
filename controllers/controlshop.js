@@ -1,4 +1,6 @@
 const products = require('../models/modelproduct')
+const cart = require('../models/modelcart')
+
 
 
 exports.getProducts = (req, res, next) => {
@@ -97,8 +99,23 @@ exports.getDetails = (req, res) => {
 }
 
 exports.getCart = (req, res, next) => {
+    res.render('shopview/productcart.ejs', {
+        pageTitle: 'Cart page',
+        path: 'productcart'
+    })
+}
+
+exports.postCart = (req, res, next) => {
+
+    const uuid = req.body.productId
+    console.log(uuid);
+    const product = products.findProductById(uuid).then(data => data)
+        .catch(err => console.log(err))
+    cart.addProduct(id = product.id, price = product.price)
 
 }
+
+
 exports.getOrders = (req, res, next) => {
 
 }

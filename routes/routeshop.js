@@ -19,6 +19,8 @@ router.get('/orders', shopController.getOrders);
 
 router.get('/checkout', shopController.getCheckout);
 
+router.post('/cart', shopController.postCart)
+
 // router.get('/products/delete',handler) -----------> this will work YYY
 
 router.post('/products/:productId', shopController.getDetails) // position matters
