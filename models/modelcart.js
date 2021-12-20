@@ -22,65 +22,176 @@ module.exports = class Cart {
 
     static addProduct(id, price) {
 
-        const oldCart = fs.readFile(p, (err, Filedata) => {
+        console.log(id, price);
 
-            let cart = {
-                itemcart: [],
-                totalPrice: 0
+
+        const existingData = fs.readFile(p, (err, file) => {
+
+
+            // return JSON.parse(file)
+            try {
+
+                // parse "" unexpected 
+                // parse "{}"
+                jsondata = JSON.parse(file)
+                if (jsondata != "" && jsondata != "{}") return jsondata
+
+            } catch (error) {
+                return null
             }
 
-            if (!err) {
-
-                try {
-
-                    const file = JSON.parse(Filedata)
-                    cart = file
-
-                    const existingProductIndex = cart.itemcart.findIndex(elem => elem.id == id)
-                    const existingProduct = cart.itemcart[existingProductIndex]
-
-                } catch (e) {
-                    console.log(e);
-                }
-
-
-
-
-                let updatedProduct;
-                if (existingProduct) {
-                    updatedProduct = {
-                        ...existingProduct
-                    }
-                    updatedProduct.count += 1
-                    cart.itemcart[existingProductIndex] = updatedProduct
-                } else {
-                    updatedProduct = {
-                        id: id,
-                        count: 1,
-                        price: price
-                    }
-                    cart.itemcart.push(updatedProduct)
-                    // cart has more products than 
-
-
-                }
-                cart.totalPrice += updatedProduct.price
-
-
-                fs.writeFile(p, cart, (err) => {
-                    console.log(err);
-                })
-
-            }
-
-            // this line is equal to
-            // elem => return elem if elem.id == id
-            // const existingProduct = cart.itemcart.find(elem => elem.id == id)
-
-
-            // itemcart.totalPrice += price
 
         })
+
+
+
+        let cart = {
+            itemcart: [],
+            totalPrice: 0
+        }
+
+        let oldProductIndex
+        let oldProduct
+
+        if (existingData != null) {
+
+            cart = existingData
+
+            oldProductIndex = cart.itemcart.findIndex(elem => elem.id == id)
+            oldProduct = cart.itemcart[oldProductIndex]
+
+        }
+
+        let updatedProduct
+
+        if (oldProduct) {
+
+            updatedProduct = {
+                ...oldProduct
+            }
+            updatedProduct.count += 1
+            cart.itemcart[oldProductIndex] = updatedProduct
+
+        } else {
+            updatedProduct = {
+                id: id,
+                count: 1,
+                price
+            }
+
+            cart.itemcart.push(updatedProduct)
+
+        }
+
+
+        cart.totalPrice += price
+
+
+        // json stringify dont convert it into string , 
+
+        /*
+        
+                {
+                    title:'imagine dragons',
+                    price:124,
+                    author:'amar agrawal',
+                    released:"27 may"
+                }
+
+                to Json.stringify()
+
+                {
+                    "title":"imagine dragons",
+                    "price":124
+                    "author":"amar agrawal",
+                    "released":"27 may"
+                }
+        
+                to Json.parse() does reverse
+
+
+
+
+                
+        
+        */
+
+
+        const jsonstring = JSON.stringify(cart)
+
+        fs.writeFile(p, jsonstring, (err) => {
+            console.log(err);
+        })
+
+
+
+        // console.log(existingData)
+
+
+
+
+
+
+        // const oldCart = fs.readFile(p, (err, Filedata) => {
+
+        //     let cart = {
+        //         itemcart: [],
+        //         totalPrice: 0
+        //     }
+
+        //     let existingProductIndex
+        //     let existingProduct
+
+        //     if (!err) {
+
+        //         try {
+
+        //             const file = JSON.parse(Filedata)
+        //             cart = file
+        //             existingProductIndex = cart.itemcart.findIndex(elem => elem.id == id)
+        //             existingProduct = cart.itemcart[existingProductIndex]
+
+
+        //         } catch (e) {
+        //             console.log(e);
+        //         }
+
+        //     }
+
+        //     // this line is equal to
+        //     // elem => return elem if elem.id == id
+        //     // const existingProduct = cart.itemcart.find(elem => elem.id == id)
+
+
+
+        //     let updatedProduct;
+        //     if (existingProduct) {
+        //         updatedProduct = {
+        //             ...existingProduct
+        //         }
+        //         updatedProduct.count += 1
+        //         cart.itemcart[existingProductIndex] = updatedProduct
+        //     } else {
+        //         updatedProduct = {
+        //             id: id,
+        //             count: 1,
+        //             price: price
+        //         }
+        //         cart.itemcart.push(updatedProduct)
+        //         // cart has more products than 
+
+
+        //     }
+        //     cart.totalPrice += updatedProduct.price
+
+
+        //     fs.writeFile(p, cart, (err) => {
+        //         console.log(err);
+        //     })
+
+        //     // itemcart.totalPrice += price
+
+        // })
 
 
 

@@ -29,19 +29,19 @@ const getFileData = () => {
 
     })
 
-    fs.readFile(p, (err, Filedata) => {
-        let products = [];
+    // fs.readFile(p, (err, Filedata) => {
+    //     let products = [];
 
-        if (!err && Filedata.length > 0) {
-            products = JSON.parse(Filedata)
-            return cb(products) // this will add existing content to products
-        }
-
-
-        cb(products)
+    //     if (!err && Filedata.length > 0) {
+    //         products = JSON.parse(Filedata)
+    //         return cb(products) // this will add existing content to products
+    //     }
 
 
-    })
+    //     cb(products)
+
+
+    // })
 
 }
 

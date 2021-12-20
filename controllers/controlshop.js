@@ -99,19 +99,26 @@ exports.getDetails = (req, res) => {
 }
 
 exports.getCart = (req, res, next) => {
-    res.render('shopview/productcart.ejs', {
-        pageTitle: 'Cart page',
-        path: 'productcart'
-    })
+
+    // res.render('shopview/productcart.ejs', {
+    //     pageTitle: 'Cart page',
+    //     path: 'productcart'
+    // })
 }
 
-exports.postCart = (req, res, next) => {
+exports.postCart = (req, res) => {
 
     const uuid = req.body.productId
     console.log(uuid);
-    const product = products.findProductById(uuid).then(data => data)
-        .catch(err => console.log(err))
-    cart.addProduct(id = product.id, price = product.price)
+    const product = products.findProductById(uuid).then(data => {
+
+            cart.addProduct(id = product.uuid, price = product.price)
+
+
+        })
+        .catch(err => console.log(err, 'this is an error'))
+    res.redirect('/products')
+
 
 }
 
