@@ -76,7 +76,7 @@ module.exports = class ProductClass {
 
         // })
 
-        getFileData.then(products => {
+        getFileData().then(products => {
 
             products.push(this)
 
@@ -85,7 +85,7 @@ module.exports = class ProductClass {
                 console.log(err)
             })
 
-        })
+        }).catch(err => console.log(err))
 
 
 
