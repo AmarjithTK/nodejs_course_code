@@ -39,7 +39,8 @@ module.exports = class Cart {
             try {
 
                 const jsondata = JSON.parse(file)
-                if (jsondata != '{}' && jsondata != '') {
+                console.log(jsondata, typeof(jsondata), 'This is Json data');
+                if (jsondata.toString() != '{}' && jsondata.toString() != '') {
                     console.log(jsondata);
                     cart = jsondata
 
