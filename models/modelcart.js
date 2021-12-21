@@ -99,11 +99,49 @@ module.exports = class Cart {
         //         to Json.parse() does reverse
 
 
+    }
 
 
+    static deleteitem(id) {
+        fs.readFile(p, (err, file) => {
+
+            if (!err) {
 
 
+                let cartdata = JSON.parse(file)
 
+                let remproduct = cartdata.products.findIndex(elem => elem.uuid == id)
+
+                const remprice = remproduct.count * remproduct.price
+
+                const updatedproductlist = cartdata.products.filter(elem => elem.uuid != id)
+                const updatedCart = {
+                    products: [...updatedproductlist],
+                    totalPrice: cartdata.totalPrice - remprice
+                }
+
+                fs.writeFile(p, JSON.stringify(updatedCart), (err) => {})
+
+                /* 
+                
+                    {products:[{},{},{}],totalprice}
+
+
+                
+                */
+
+
+            }
+
+
+        })
+
+    }
+
+
+    static deleteall() {
+        // fs.writeFile(p)
+        fs.unlink(p, (err) => {})
     }
 
 
