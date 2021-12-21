@@ -101,7 +101,7 @@ module.exports = class Cart {
 
     }
 
-    static fetchuuid() {
+    static fetchAll() {
         return new Promise((resolve, reject) => {
 
 
@@ -109,9 +109,8 @@ module.exports = class Cart {
                 if (!err) {
 
                     const cart = JSON.parse(file)
-                    const files = cart.products.map(elem => elem.uuid)
-                    console.log(files, 'this is here --------------------------------------');
-                    return resolve(cart.products.map(elem => elem.uuid))
+                    console.log('this is here --------------------------------------');
+                    return resolve(cart)
 
 
                 } else reject(err)

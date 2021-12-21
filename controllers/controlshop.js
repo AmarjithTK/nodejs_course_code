@@ -102,7 +102,7 @@ exports.getCart = (req, res, next) => {
 
 
     ProductClass.fetchAll().then(data => {
-        cart.fetch().then(uuids => {
+        cart.fetchAll().then(cart => {
 
 
             // const cartelems = data.filter(productdata => {
@@ -116,8 +116,8 @@ exports.getCart = (req, res, next) => {
             let cartelems = []
 
             data.forEach(productdata => {
-                uuids.forEach(uuid => {
-                    if (uuid == productdata.uuid) cartelems.push(productdata)
+                cart.products.forEach(product => {
+                    if (product.uuid == productdata.uuid) cartelems.push(productdata)
                 })
             })
 
