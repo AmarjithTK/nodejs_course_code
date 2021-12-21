@@ -103,9 +103,9 @@ module.exports = class ProductClass {
 
         getFileData().then((filedata) => {
 
-            let updatedData = filedata
+            let updatedData = [...filedata]
 
-            const prodIndex = updatedData.findIndex(elem => elem.uuid = uuid)
+            const prodIndex = updatedData.findIndex(elem => elem.uuid == uuid)
             let prodUpdated = {
                 title,
                 uuid,
@@ -114,6 +114,8 @@ module.exports = class ProductClass {
                 price
             }
 
+            console.log(prodIndex)
+
             updatedData[prodIndex] = prodUpdated
 
             fs.writeFile(p, JSON.stringify(updatedData), (err) => {
@@ -121,6 +123,14 @@ module.exports = class ProductClass {
             })
 
 
+        })
+
+    }
+
+    static remove(id) {
+
+        getFileData().then(filedata => {
+            const updatedProducts = filedata.filter(elem => elem.uuid != id)
         })
 
     }
