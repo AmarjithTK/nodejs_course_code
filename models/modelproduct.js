@@ -131,6 +131,10 @@ module.exports = class ProductClass {
 
         getFileData().then(filedata => {
             const updatedProducts = filedata.filter(elem => elem.uuid != id)
+            fs.writeFile(p, JSON.stringify(updatedProducts), (err) => {
+                // console.log(err)
+            })
+
         })
 
     }

@@ -62,6 +62,17 @@ exports.postEditProduct = (req, res) => {
 }
 
 
+exports.postDeleteProduct = (req, res) => {
+
+    const uuid = req.params.productId
+
+    ProductClass.remove(uuid)
+
+    res.redirect('/admin/products')
+
+
+}
+
 
 exports.getProductList = (req, res) => {
     // return render('adminview/listproducts', {

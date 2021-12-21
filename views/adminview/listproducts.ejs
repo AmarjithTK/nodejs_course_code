@@ -36,7 +36,12 @@
                             <button type="submit" class="button is-primary is-active m-1 is-inline-block ">Edit</button>
 
                         </form>
-                        <a href="/admin/delete-product" class="button is-primary is-active m-1 is-inline-block ">Delete</a>
+
+                        <form class="form is-inline-block" action="/admin/delete-product/<%=product.uuid%>" method="POST">
+                            <button type="submit" class="button is-primary is-active m-1 is-inline-block ">Delete</button>
+
+                        </form>
+                        <!-- <a href="/admin/delete-product" class="button is-primary is-active m-1 is-inline-block ">Delete</a> -->
 
                     </div>
 
