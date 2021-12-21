@@ -1,6 +1,7 @@
 const ProductClass = require('../models/modelproduct')
 
 
+
 exports.getAddProduct = (req, res) => {
     console.log(req.body)
     res.render('adminview/addproducts', {
@@ -26,14 +27,32 @@ exports.postAddProduct = (req, res) => {
 
 
 exports.getEditProduct = (req, res) => {
-    console.log(req.body)
-    const editTrigger = req.query.edit
-    res.render('adminview/addproducts', {
-        pageTitle: 'Edit product page',
-        path: 'Edit product',
-        editmode: editTrigger
+    // console.log(req.body)
 
-    })
+    //  const  dynamic_param = req.params.productId
+
+    const editmodeq = req.query.editmode
+    const uuidq = req.params.productId
+
+    const editmode = editmodeq == "true" ? true : false
+
+
+    if (editmode) {
+
+        ProductClass.findProductById(uuidq).then(data => {
+
+
+                res.render('adminview/editproducts', {
+                    pageTitle: 'Edit product page',
+                    path: 'Edit product',
+                    editmode: editmode,
+                    productdata: data
+                })
+
+            })
+            .catch(err => console.log(err))
+    }
+
 
 }
 
