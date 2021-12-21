@@ -6,7 +6,6 @@
 
     <%- include('../mixins/nav.ejs') %>
 
-    <% if(editmode == true) {%>
 
 
 
@@ -17,7 +16,7 @@
             <div class="column is-4">
                 <form action="/admin/edit-product" class="form has-text-centered" method="POST">
 
-
+                    <input type="hidden" name="uuid" value="<%=productdata.uuid%>">
 
 
                     <h1 class="is-size-4 has-text-weight-bold mt-4 mb-4" style="text-align: center;">
@@ -70,38 +69,5 @@
 
 
 
-    <% } else {%>
 
-
-    <div class="container">
-
-
-        <div class="columns is-flex is-justify-content-center">
-            <div class="column is-4">
-                <form action="/admin/add-product" class="form has-text-centered" method="POST">
-
-
-
-
-                    <h1 class="is-size-4 has-text-weight-bold mt-4 mb-2" style="text-align: center;">
-                        Add new products here
-
-                    </h1> <input type="text" name="title" placeholder="Title of product" class="input mt-2">
-                    <input type="text" name="price" placeholder="Price of product" class="input mt-2">
-                    <input type="text" name="imageurl" placeholder="Image url of product" class="input mt-2">
-
-                    <input type="text" name="description" placeholder="Description of product" class="input mt-2">
-
-                    <button class="button is-dark m-5 is-inline-block" type="submit">submit</button>
-
-
-                </form>
-
-            </div>
-        </div>
-
-
-    </div>
-
-    <% } %>
     <%- include('../mixins/footer.ejs') %>

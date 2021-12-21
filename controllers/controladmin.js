@@ -31,27 +31,32 @@ exports.getEditProduct = (req, res) => {
 
     //  const  dynamic_param = req.params.productId
 
-    const editmodeq = req.query.editmode
     const uuidq = req.params.productId
 
-    const editmode = editmodeq == "true" ? true : false
+    // const editmode = editmodeq == "true" ? true : false
 
 
-    if (editmode) {
 
-        ProductClass.findProductById(uuidq).then(data => {
+    ProductClass.findProductById(uuidq).then(data => {
 
 
-                res.render('adminview/editproducts', {
-                    pageTitle: 'Edit product page',
-                    path: 'Edit product',
-                    editmode: editmode,
-                    productdata: data
-                })
-
+            res.render('adminview/editproducts', {
+                pageTitle: 'Edit product page',
+                path: 'Edit product',
+                productdata: data
             })
-            .catch(err => console.log(err))
-    }
+
+        })
+        .catch(err => console.log(err))
+
+
+
+}
+
+exports.postEditProduct = (req, res) => {
+    console.log(req.body);
+    ProductClass.saveModified(req.body)
+    res.redirect('/admin/products')
 
 
 }
@@ -74,8 +79,8 @@ exports.getProductList = (req, res) => {
                 pageTitle: 'list products',
                 path: 'listproducts',
                 prods: data,
-                hasprods: data.length > 0,
-                activeShop: true
+                // hasprods: data.length > 0,
+                // activeShop: true
 
             })
 

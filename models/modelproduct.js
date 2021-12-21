@@ -91,6 +91,40 @@ module.exports = class ProductClass {
 
     }
 
+    static saveModified({
+        title,
+        price,
+        uuid,
+        imageurl,
+        description
+    }) {
+
+
+
+        getFileData().then((filedata) => {
+
+            let updatedData = filedata
+
+            const prodIndex = updatedData.findIndex(elem => elem.uuid = uuid)
+            let prodUpdated = {
+                title,
+                uuid,
+                imageurl,
+                description,
+                price
+            }
+
+            updatedData[prodIndex] = prodUpdated
+
+            fs.writeFile(p, JSON.stringify(updatedData), (err) => {
+
+            })
+
+
+        })
+
+    }
+
 
     // I feel  like static is similar keyword to --> @classmethod in python
     static fetchAll() {

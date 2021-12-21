@@ -14,13 +14,11 @@ exports.getProducts = (req, res, next) => {
     products.fetchAll()
         .then(data => {
 
-
+            console.log(data);
             return res.render('shopview/productlist', {
                 pageTitle: 'Shop page',
                 path: 'productshop',
                 prods: data,
-                hasprods: data.length > 0,
-                activeShop: true
 
             })
 
@@ -83,6 +81,7 @@ exports.getDetails = (req, res) => {
         //     activeShop: true
 
         // })
+
 
         return res.render('shopview/productdetail', {
             pageTitle: 'Product details',
