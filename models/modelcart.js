@@ -1,9 +1,9 @@
-// how cart model is different from product model
+// how cart model is different from producart model
 
-// because product will created frequently but there is only one cart
+// because producart will created frequently but there is only one cart
 
 
-// cart requires no constructor as it gets add cart and remove cart very frequently
+// cart requires no construcartor as it gets add cart and remove cart very frequently
 
 const {
     json
@@ -23,138 +23,57 @@ module.exports = class Cart {
     static addProduct(id, price) {
 
 
-
         fs.readFile(p, (error, file) => {
 
-
             let cart = {
-                itemcart: [],
+                products: [],
                 totalPrice: 0
             }
 
-            let updatedProduct
-            let existingProduct
-            let existingProductIndex
-
             try {
-
                 const jsondata = JSON.parse(file)
-                console.log(jsondata, typeof(jsondata), 'This is Json data');
-                if (jsondata.toString() != '{}' && jsondata.toString() != '') {
-                    console.log(jsondata);
-                    cart = jsondata
+                cart = jsondata
+            } catch (er) {
+                console.log('The error comes from try catch block of fs readfile ', er)
+            }
+            let updatedproduct
+            let existingprodindex = cart.products.findIndex(val => val.uuid == id)
+            let existingprod = cart.products[existingprodindex]
 
-                    existingProductIndex = cart.itemcart.findIndex(elem => elem.uuid == id)
-                    existingProduct = cart.itemcart[existingProductIndex]
+            if (existingprod) {
+                // cart.totalPrice !=0 does not mean existingproducart is the same as the incoming
 
-                    updatedProduct = {
-                        ...existingProduct
-                    }
-                    updatedProduct.count += 1
-                    cart.itemcart[existingProductIndex] = updatedProduct
 
-                } else
-                    throw error
+                updatedproduct = {
+                    ...existingprod
+                }
+                updatedproduct.count += 1
 
-            } catch (e) {
+                cart.products = [
+                    ...cart.products
+                ]
 
-                updatedProduct = {
+                cart.products[existingprodindex] = updatedproduct
+
+
+            } else {
+                updatedproduct = {
                     uuid: id,
                     count: 1,
                     price: price
                 }
 
-                cart.itemcart.push(updatedProduct)
 
+                cart.products = [...cart.products, updatedproduct]
             }
 
-            cart.totalPrice += price
+            cart.totalPrice += +price
+            console.log(cart.totalPrice)
 
-            console.log(cart);
-            fs.writeFile(p, JSON.stringify(cart), (err) => {
-                console.log('Error from file writing', err);
-            })
-
-
-
-
+            fs.writeFile(p, JSON.stringify(cart), (err) => {})
 
         })
 
-
-
-
-        // const existingData = fs.readFile(p, (err, file) => {
-
-
-        //     // return JSON.parse(file)
-        //     let parseError
-        //     try {
-
-        //         // parse "" unexpected 
-        //         // parse "{}"
-        //         jsondata = JSON.parse(file)
-        //         if (jsondata != "" && jsondata != "{}") {
-        //             parseError = false
-        //         }
-
-        //     } catch (error) {
-        //         parseError = true
-        //     }
-
-        //     if(!parseError){
-
-
-
-
-        //     }
-
-
-
-
-
-
-
-
-
-        // })
-
-
-
-        // let cart = {
-        //     itemcart: [],
-        //     totalPrice: 0
-        // }
-
-        // let oldProductIndex
-        // let oldProduct
-        // let updatedProduct
-        // if (existingData != null) {
-
-        //     cart = existingData
-
-        //     oldProductIndex = cart.itemcart.findIndex(elem => elem.id == id)
-        //     oldProduct = cart.itemcart[oldProductIndex]
-
-        //     updatedProduct = {
-        //         ...oldProduct
-        //     }
-        //     updatedProduct.count += 1
-        //     cart.itemcart[oldProductIndex] = updatedProduct
-
-        // } else {
-        //     updatedProduct = {
-        //         id: id,
-        //         count: 1,
-        //         price
-        //     }
-
-        //     cart.itemcart.push(updatedProduct)
-
-        // }
-
-
-        // cart.totalPrice += price
 
 
         // // json stringify dont convert it into string , 
@@ -184,96 +103,6 @@ module.exports = class Cart {
 
 
 
-        // */
-
-
-        // const jsonstring = JSON.stringify(cart)
-
-        // fs.writeFile(p, jsonstring, (err) => {
-        //     console.log(err);
-        // })
-
-
-
-        // console.log(existingData)
-
-
-
-
-
-
-        // const oldCart = fs.readFile(p, (err, Filedata) => {
-
-        //     let cart = {
-        //         itemcart: [],
-        //         totalPrice: 0
-        //     }
-
-        //     let existingProductIndex
-        //     let existingProduct
-
-        //     if (!err) {
-
-        //         try {
-
-        //             const file = JSON.parse(Filedata)
-        //             cart = file
-        //             existingProductIndex = cart.itemcart.findIndex(elem => elem.id == id)
-        //             existingProduct = cart.itemcart[existingProductIndex]
-
-
-        //         } catch (e) {
-        //             console.log(e);
-        //         }
-
-        //     }
-
-        //     // this line is equal to
-        //     // elem => return elem if elem.id == id
-        //     // const existingProduct = cart.itemcart.find(elem => elem.id == id)
-
-
-
-        //     let updatedProduct;
-        //     if (existingProduct) {
-        //         updatedProduct = {
-        //             ...existingProduct
-        //         }
-        //         updatedProduct.count += 1
-        //         cart.itemcart[existingProductIndex] = updatedProduct
-        //     } else {
-        //         updatedProduct = {
-        //             id: id,
-        //             count: 1,
-        //             price: price
-        //         }
-        //         cart.itemcart.push(updatedProduct)
-        //         // cart has more products than 
-
-
-        //     }
-        //     cart.totalPrice += updatedProduct.price
-
-
-        //     fs.writeFile(p, cart, (err) => {
-        //         console.log(err);
-        //     })
-
-        //     // itemcart.totalPrice += price
-
-        // })
-
-
-
-
-
-
-
-        // fetch older cart
-        // find if the product already exists
-
-        // if it then don't create
-        // else create a new product list
 
     }
 
@@ -288,12 +117,12 @@ module.exports = class Cart {
 /*
 
 
-product name , price , count
+producart name , price , count
 
-const cart = {products:[],totalprice:0}
+const cart = {products:[],totalPrice:0}
 
 
-productnew = {product.name,product.price,product.count}
+producartnew = {producart.name,producart.price,producart.count}
 
 price = products.reduce(start,elem=>{
     start += elem.price * elem.count

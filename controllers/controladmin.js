@@ -23,6 +23,22 @@ exports.postAddProduct = (req, res) => {
 
 }
 
+
+
+exports.getEditProduct = (req, res) => {
+    console.log(req.body)
+    const editTrigger = req.query.edit
+    res.render('adminview/addproducts', {
+        pageTitle: 'Edit product page',
+        path: 'Edit product',
+        editmode: editTrigger
+
+    })
+
+}
+
+
+
 exports.getProductList = (req, res) => {
     // return render('adminview/listproducts', {
     //     pageTitle: 'list products',

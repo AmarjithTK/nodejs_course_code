@@ -110,13 +110,13 @@ exports.postCart = (req, res) => {
 
     const uuid = req.body.productId
     console.log(uuid);
-    const product = products.findProductById(uuid).then(product => {
+    products.findProductById(uuid).then(product => {
 
-            cart.addProduct(id = product.uuid, price = product.price)
+            cart.addProduct(id = uuid, price = product.price)
 
 
         })
-        .catch(err => console.log(err, 'this is an error'))
+        .catch(err => console.log(err, 'this is an error from findproduct by id'))
     res.redirect('/products')
 
 
