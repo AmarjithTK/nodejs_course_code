@@ -1,5 +1,6 @@
 const products = require('../models/modelproduct')
-const cart = require('../models/modelcart')
+const cart = require('../models/modelcart');
+const ProductClass = require('../models/modelproduct');
 
 
 
@@ -99,10 +100,30 @@ exports.getDetails = (req, res) => {
 
 exports.getCart = (req, res, next) => {
 
-    // res.render('shopview/productcart.ejs', {
-    //     pageTitle: 'Cart page',
-    //     path: 'productcart'
-    // })
+
+    ProductClass.fetchAll().then(data => {
+        cart.fetchuuid().then(uuids => {
+
+
+            const cartelems = data.filter(elem => {
+                uuids.forEach(element => {
+                    if (element == elem.uuid) {
+                        return elem
+                    }
+                });
+            })
+
+            return res.render('shopview/productcart', {
+                pageTitle: 'Cart page',
+                path: 'productcart',
+                prods: cartelems
+            })
+
+        })
+
+    })
+
+
 }
 
 exports.postCart = (req, res) => {

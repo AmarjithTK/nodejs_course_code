@@ -101,6 +101,27 @@ module.exports = class Cart {
 
     }
 
+    static fetchuuid() {
+        return new Promise((resolve, reject) => {
+
+
+            fs.readFile(p, (err, file) => {
+                if (!err) {
+
+                    const cart = JSON.parse(file)
+                    const files = cart.products.map(elem => elem.uuid)
+                    console.log(files, 'this is here --------------------------------------');
+                    return resolve(cart.products.map(elem => elem.uuid))
+
+
+                } else reject(err)
+            })
+
+        })
+
+
+    }
+
 
     static deleteitem(id) {
         fs.readFile(p, (err, file) => {
@@ -143,6 +164,9 @@ module.exports = class Cart {
         // fs.writeFile(p)
         fs.unlink(p, (err) => {})
     }
+
+
+
 
 
 
