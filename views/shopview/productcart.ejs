@@ -10,10 +10,10 @@
 
             <% for (let product of prods ) { %>
 
-            <div class="column is-one-quarter">
+            <div class="column m-4 is-one-quarter is-inline-block">
                 <div class="card">
                     <div class="card-header">
-                        <p class="card-header-title is-centered"><%= product.title %></p>
+                        <p class="card-header-title is-centered"><%= product.productdata.title %></p>
                     </div>
                     <div class="card-image mb-0">
                         <figure class="image">
@@ -24,7 +24,7 @@
                     <div class="card-content p-2 has-text-centered">
 
                         <p class=" is-6 has-text-centered has-text-weight-bold">
-                            <%= product.price*product.count %> $
+                            <%= (product.productdata.price* product.count) %> $
                         </p>
 
                         <!-- 
@@ -46,21 +46,29 @@
 
                 </div>
             </div>
-
-
-
             <% } %>
 
+        </div>
 
-            <% } else {%>
-            <h1>nothing here</h1>
-            <%}%>
+
+        <div class="columns is-flex is-justify-content-center">
+            <div class="column is-4 mt-6 has-background-dark has-text-centered ">
+                <button type="submit" class="button is-primary mb-1 is-inline-block is-fullwidth">clear cart</button>
+                <button type="submit" class="button is-danger is-light  is-inline-block is-fullwidth">update the cart</button>
+            </div>
+        </div>
+
+
+
+
+        <% } else {%>
+        <h1>nothing here</h1>
+        <%}%>
 
 
           
 
 
-       </div>
 
    </div>
 

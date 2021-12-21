@@ -117,7 +117,10 @@ exports.getCart = (req, res, next) => {
 
             data.forEach(productdata => {
                 cart.products.forEach(product => {
-                    if (product.uuid == productdata.uuid) cartelems.push(productdata)
+                    if (product.uuid == productdata.uuid) cartelems.push({
+                        productdata,
+                        count: product.count
+                    })
                 })
             })
 
