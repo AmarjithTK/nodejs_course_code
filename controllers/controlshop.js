@@ -102,17 +102,35 @@ exports.getCart = (req, res, next) => {
 
 
     ProductClass.fetchAll().then(data => {
-        cart.fetchuuid().then(uuids => {
+        cart.fetch().then(uuids => {
 
 
-            const cartelems = data.filter(elem => {
-                uuids.forEach(element => {
-                    if (element == elem.uuid) {
-                        return elem
-                    }
-                });
+            // const cartelems = data.filter(productdata => {
+            //     uuids.forEach(uuid => {
+            //         if (uuid == productdata.uuid) {
+            //             return productdata
+            //         }
+            //     })
+            // })
+
+            let cartelems = []
+
+            data.forEach(productdata => {
+                uuids.forEach(uuid => {
+                    if (uuid == productdata.uuid) cartelems.push(productdata)
+                })
             })
 
+            // const cartelems = data.filter(elem => {
+            //     const elems = []
+            //     uuids.forEach(element => {
+            //         if (element == elem.uuid) {
+            //             elems.push(elem)
+            //         }
+            //     });
+            //     return elems
+            // })
+            console.log(cartelems)
             return res.render('shopview/productcart', {
                 pageTitle: 'Cart page',
                 path: 'productcart',

@@ -1,6 +1,7 @@
 <%- include('../mixins/head.ejs') %>
 
 <body>
+    <%- include('../mixins/nav.ejs') %>
 
     <div class="container">
         <div class="columns is-multiline">
@@ -23,10 +24,9 @@
                     <div class="card-content p-2 has-text-centered">
 
                         <p class=" is-6 has-text-centered has-text-weight-bold">
-                            <%= product.price %> $
+                            <%= product.price*product.count %> $
                         </p>
 
-                        <p class=" is-6 has-text-centered"><%= product.description %></p>
                         <!-- 
                         <form class="form is-inline-block" action="/admin/edit-product/<%=product.uuid%>" method="POST">
                             <button type="submit" class="button is-primary is-active m-1 is-inline-block "></button>
@@ -66,5 +66,4 @@
 
 
 
-    <%- include('../mixins/nav.ejs') %>
             <%- include('../mixins/footer.ejs') %>
