@@ -1,6 +1,6 @@
 const fs = require('fs')
-const path = require('path')
-
+// const path = require('path')
+// require.main.path is already there in new version o fthe node
 const uuid = require('uuid')
 
 
@@ -100,6 +100,8 @@ module.exports = class ProductClass {
     }) {
 
 
+        // see for the instructors' method TODO
+
 
         getFileData().then((filedata) => {
 
@@ -144,6 +146,8 @@ module.exports = class ProductClass {
     static fetchAll() {
 
         return getFileData();
+
+        //// fetchall is redundatn but getfiledata is not a global function of the class
 
     }
 

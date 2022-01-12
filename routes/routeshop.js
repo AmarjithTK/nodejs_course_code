@@ -25,6 +25,8 @@ router.post('/cart', shopController.postCart)
 
 router.post('/products/:productId', shopController.getDetails) // position matters
 
+// this is what
+
 // router.get('/products/delete',handler) ------------> this wont XXX
 
 
